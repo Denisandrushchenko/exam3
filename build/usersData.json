@@ -1,0 +1,33 @@
+[
+    {
+       "id" : 1 ,
+       "name": "John Jonzz",
+       "Phone": 380967277662
+    }, 
+    {
+        "id" : 2 ,
+       "name": "Till Lindemann",
+       "Phone": 380958827721
+    },
+    {
+        
+        "id" : 3 ,
+        "name": "Barbara Streizend",
+        "Phone": 380988177723
+    },
+    {
+        "id" : 4 ,
+        "name": "Jackie Chan",
+        "Phone": 380961234231
+    },
+    {
+        "id" : 5 ,
+        "name": "Micheael Jackson",
+        "Phone": 380990818871
+    },
+    {
+        "id" : 6 ,
+        "name": "Julius Ceasar",
+        "Phone": 380977777770
+    }
+]

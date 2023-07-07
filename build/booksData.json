@@ -1,0 +1,93 @@
+
+
+[  
+  
+  {
+    "id": 1
+    ,
+    "name": "Lord of the rings"
+    ,
+    "autor_name": "John Tolkien"
+    ,
+    "year": 1968
+    ,
+    "publisher_name": "Treadord in Uganda"
+    ,
+    "number_of_page": 990
+    ,
+    "number_of_instance_in_library": 5
+  }
+  ,
+
+  {
+    "id": 2
+    ,
+    "name": "Sherlock Holmes"
+    ,
+    "autor_name": "Artur Conan Doyle"
+    ,
+    "year": 1927
+    ,
+    "publisher_name": "Treadord in Uganda"
+    ,
+    "number_of_page": 550
+    ,
+    "number_of_instance_in_library": 7
+  } 
+ ,
+  {
+    "id": 3
+    ,
+    "name": "1984"
+    ,
+    "autor_name": "George Oruell"
+    ,
+    "year": 1949
+    ,
+    "publisher_name": "Treadord in Uganda"
+    ,
+    "number_of_page": 380
+    ,
+    "number_of_instance_in_library": 10
+  } 
+  ,
+  {
+    "id": 4
+    ,
+    "name": "Faust"
+    ,
+    "autor_name": "Gete"
+    ,
+    "year": 1771
+    ,
+    "publisher_name": "Treadord in Uganda"
+    ,
+    "number_of_page": 242
+    ,
+    "number_of_instance_in_library": 1
+  } 
+   ,
+  {
+    "id": 5
+    ,
+    "name": "Mowgli"
+    ,
+    "autor_name": "Joseph Rudyard Kipling"
+    ,
+    "year": 1910
+    ,
+    "publisher_name": "Treadord in Uganda"
+    ,
+    "number_of_page": 440
+    ,
+    "number_of_instance_in_library": 4
+  }
+
+
+
+
+
+
+
+
+]
