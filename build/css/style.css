@@ -48,6 +48,18 @@ h1{
     cursor: pointer;
 }
 
+.search{
+    margin-right: 30px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+    border: none;
+    
+}
+
+.search-button-cancel , .search-button-searching, .search-input{
+    margin-left: 2px;
+}
 
 .submenu{
     margin-top: 30px;
@@ -96,7 +108,7 @@ h1{
 }
 
 table{
-    width: 95%;
+    width: 90%;
     margin: 30px auto;
     border-collapse: collapse;
     
@@ -146,4 +158,8 @@ td{
     transform: rotate(45deg);
     font-weight: bold;
     cursor: pointer;
+}
+
+.active{
+    background-color: yellow;
 }

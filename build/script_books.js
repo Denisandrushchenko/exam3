@@ -14,8 +14,11 @@ class Books{
       this.delId = null
       this.newArr2 = []
       this.newArr3 = []
-  } 
-    
+      this.inputSearchBook = document.querySelector('.search-input')
+  }  
+
+
+  
    goToLocalStorage(){
        
             
@@ -52,7 +55,7 @@ class Books{
   this.table.insertAdjacentHTML('afterbegin' , str)
 
           this.booksData.forEach(element => {
-            let str2 = ` <tr> 
+            let str2 = ` <tr class = "${element.class}"> 
             <td> ${element.id} </td>
             <td> ${element.name} </td>
             <td> ${element.autor_name} </td>
@@ -72,10 +75,24 @@ class Books{
     }
 
      buttonNewBook(){
+      this.modal.querySelectorAll('input').forEach(elem => {
+        if(elem.value == ''){
+          this.buttonSaveBook.disabled = true
+          
+        }
+    })
         document.querySelector('.modal').style.display = 'flex'
-        
+      }
 
-     }
+      checkData(e){
+          if(e.target.matches('input')){
+            this.newArr3 =  Array.from(this.modal.querySelectorAll('input'))
+           if(this.newArr3.every(elem => elem.value !== '')){
+               this.buttonSaveBook.disabled = false
+           }
+            
+          }
+        }
 
      addNewBook(){
           this.newBook = {
@@ -85,15 +102,15 @@ class Books{
             year: this.modalOptions.children[5].value,
             publisher_name: this.modalOptions.children[7].value,
             number_of_page: this.modalOptions.children[9].value,
-            number_of_instance_in_library: this.modalOptions.children[5].value,
-          }
+            number_of_instance_in_library: this.modalOptions.children[5].value,     
+          }   
+
+        
+
+
           this.newArr = JSON.parse(localStorage.getItem('booksData')) 
-          console.dir(this.newArr)
           this.newArr.push(this.newBook)
-          console.dir(this.newArr)
-          console.dir(this.newBook)
           localStorage.setItem('booksData' , JSON.stringify(this.newArr))
-          
           this.setTable()
           this.modal.style.display = 'none'
           
@@ -112,7 +129,7 @@ class Books{
 
    delBook(e){
         let target = e.target
-        e.stopPropagation()
+       
         if(target.matches('.delete-book') ){
           
          this.delId = parseInt( target.parentElement.children[0].innerHTML ) 
@@ -127,7 +144,7 @@ class Books{
           ) 
              
           
-          console.dir(this.newArr2)
+         
           localStorage.setItem('booksData' , JSON.stringify(this.newArr2))
 
           this.setTable()
@@ -135,27 +152,58 @@ class Books{
            } 
       }
 
+   searchBook (){
+     
+     this.booksData = JSON.parse(localStorage.getItem('booksData'))
+     
+      this.booksData.forEach(elem => {
+       
+        if( elem.name  ==  this.inputSearchBook.value ||
+             elem.autor_name ==  this.inputSearchBook.value ||
+             elem.year ==  this.inputSearchBook.value     ||
+             elem.publisher_name ==   this.inputSearchBook.value ){
+          elem.class = 'active'
+         
+        }
+      })
+     localStorage.setItem('booksData' , JSON.stringify(this.booksData))
+
+     this.setTable()
+    
+   }  
+
+   cancelSearchingBook(){
+        this.inputSearchBook.value = ''
+
+       this.booksData = JSON.parse(localStorage.getItem('booksData'))
+       this.booksData.forEach(elem => elem.class = '')
+        
+       localStorage.setItem('booksData' , JSON.stringify(this.booksData))
+       
+       this.setTable()
+     
+   }
+
   
 
   init(){
     
     this.goToLocalStorage()
-    
+    this.modal.addEventListener('input' , this.checkData.bind(this))
     this.setTable()
     this.buttonAddBook.addEventListener('click' , this.buttonNewBook.bind(this) )
     this.modal.addEventListener('click', this.modalClose.bind(this) )
     this.buttonSaveBook.addEventListener('click', this.addNewBook.bind(this))
     this.table.addEventListener('click' , this.delBook.bind(this))
+    document.querySelector('.search-button-searching').addEventListener('click' , this.searchBook.bind(this))
+    document.querySelector('.search-button-cancel').addEventListener('click' , this.cancelSearchingBook.bind(this))
     
-
-    console.dir(this.table)
     
   }
 
 }
 
 new Books().init()
-
 
 
 
