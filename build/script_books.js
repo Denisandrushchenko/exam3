@@ -40,7 +40,7 @@ class Books{
       this.table.innerHTML = ''
       this.setUsersFromLocalStorage()
        
-             let str = `<tr>
+             let str = `<tr class = "header-tr" >
               <td>ID </td>
               <td> Name</td>
               <td> Year</td>

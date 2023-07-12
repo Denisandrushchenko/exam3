@@ -3,24 +3,21 @@
     "id": 1 ,
     "visitor" : "Jackie Chan",
     "book": "Mowgli",
-    "borrow_date": "2022 10 20 ",
-    "return_date": "2023 10 20 "
+    "borrow_date": "2022 10 20 "
   },
 
   {
     "id": 2 ,
     "visitor" : "Till Lindemann",
     "book": "1984",
-    "borrow_date": "2022 10 24 ",
-    "return_date": "2023 10 24 "
+    "borrow_date": "2022 10 24 "
   }
    ,
   {
     "id": 3 ,
     "visitor" : "Micheael Jackson",
     "book": "Gete",
-    "borrow_date": "2022 08 22 ",
-    "return_date": "2023 08 22 "
+    "borrow_date": "2022 08 22 "
   }
 
 
