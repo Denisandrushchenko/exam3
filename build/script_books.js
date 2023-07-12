@@ -95,6 +95,9 @@ class Books{
         }
 
      addNewBook(){
+
+         
+       
           this.newBook = {
             id: JSON.parse(localStorage.getItem('booksData')).length + 1,
             name: this.modalOptions.children[1].value,
@@ -102,7 +105,7 @@ class Books{
             year: this.modalOptions.children[5].value,
             publisher_name: this.modalOptions.children[7].value,
             number_of_page: this.modalOptions.children[9].value,
-            number_of_instance_in_library: this.modalOptions.children[5].value,     
+            number_of_instance_in_library: this.modalOptions.children[11].value,     
           }   
 
         
@@ -113,7 +116,8 @@ class Books{
           localStorage.setItem('booksData' , JSON.stringify(this.newArr))
           this.setTable()
           this.modal.style.display = 'none'
-          
+
+          this.modalOptions.querySelectorAll('input').forEach(elem => elem.value = '')
      }
         
 
@@ -152,6 +156,8 @@ class Books{
            } 
       }
 
+      
+
    searchBook (){
      
      this.booksData = JSON.parse(localStorage.getItem('booksData'))
@@ -187,10 +193,11 @@ class Books{
   
 
   init(){
-    
+     
     this.goToLocalStorage()
-    this.modal.addEventListener('input' , this.checkData.bind(this))
     this.setTable()
+    this.modal.addEventListener('input' , this.checkData.bind(this))
+    
     this.buttonAddBook.addEventListener('click' , this.buttonNewBook.bind(this) )
     this.modal.addEventListener('click', this.modalClose.bind(this) )
     this.buttonSaveBook.addEventListener('click', this.addNewBook.bind(this))

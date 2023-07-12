@@ -13,7 +13,7 @@
 
 img{
 
-    width: 15%;
+    width: 10%;
 }
 
 h1{  
@@ -150,10 +150,11 @@ td{
 }
 
 .modal span{
+    
     display: block;
     position: absolute;
-    top: 10px;
-    left: 90%;
+    top: 5px;
+    left: 95%;
     font-size: 1.5em;
     transform: rotate(45deg);
     font-weight: bold;
@@ -162,4 +163,12 @@ td{
 
 .active{
     background-color: yellow;
+}
+
+.sort_right button{
+    margin-left: 5px;
+}
+
+select{
+    margin-bottom: 10px;
 }
