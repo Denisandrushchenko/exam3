@@ -15,6 +15,8 @@ class Books{
       this.newArr2 = []
       this.newArr3 = []
       this.inputSearchBook = document.querySelector('.search-input')
+      this.buttonSort = document.querySelector('.sort_books button')
+      this.temp = null
   }  
 
 
@@ -43,8 +45,8 @@ class Books{
              let str = `<tr class = "header-tr" >
               <td>ID </td>
               <td> Name</td>
-              <td> Year</td>
-              <td> Autor Name </td> 
+              <td> Autor Name </td>
+              <td> Year </td> 
               <td> Publisher  Name </td> 
               <td> Number of page  </td> 
               <td> Number of instanse in library  </td> 
@@ -187,8 +189,26 @@ class Books{
        localStorage.setItem('booksData' , JSON.stringify(this.booksData))
        
        this.setTable()
+      
+   }  
+
+   sortBooks(){
+    this.temp = document.querySelector('.sort_books select').value
+    this.booksData = JSON.parse(localStorage.getItem('booksData'))
+    if(this.temp == 'Year'){
+    this.booksData.sort((x, y) => x.year - y.year) 
+    }   
+    if(this.temp == 'ID'){
+
+      this.booksData.sort((x , y) => x.id - y.id )
+    }
+    localStorage.setItem('booksData' , JSON.stringify(this.booksData)) 
      
+     
+    this.setTable()
    }
+
+    
 
   
 
@@ -197,14 +217,14 @@ class Books{
     this.goToLocalStorage()
     this.setTable()
     this.modal.addEventListener('input' , this.checkData.bind(this))
-    
     this.buttonAddBook.addEventListener('click' , this.buttonNewBook.bind(this) )
     this.modal.addEventListener('click', this.modalClose.bind(this) )
     this.buttonSaveBook.addEventListener('click', this.addNewBook.bind(this))
     this.table.addEventListener('click' , this.delBook.bind(this))
+    this.buttonSort.addEventListener('click' , this.sortBooks.bind(this))
     document.querySelector('.search-button-searching').addEventListener('click' , this.searchBook.bind(this))
     document.querySelector('.search-button-cancel').addEventListener('click' , this.cancelSearchingBook.bind(this))
-    
+    console.dir(this.buttonSort)
     
   }
 

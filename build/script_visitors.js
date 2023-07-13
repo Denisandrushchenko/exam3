@@ -172,7 +172,7 @@ cancelSearchingUser(){
     
     this.setTable()
   
-}
+}        
 
 
   

@@ -19,6 +19,7 @@ class Card{
       this.M = this.myDate.getMonth()
       this.D = this.myDate.getDay() 
       this.delId = null
+      this.statisticArr = []
       
       
   } 
@@ -49,7 +50,7 @@ class Card{
               <td> Visitor</td>
               <td> Book</td>
               <td> Borrow Date </td> 
-              <td> Return Date </td> 
+              <td> Return </td> 
              
               
 
@@ -115,7 +116,7 @@ class Card{
 
 
        this.cardsData = JSON.parse(localStorage.getItem('cardsData'))
-       console.dir(this.cardsData)
+       
        this.newCard = {
          id: this.cardsData.length + 1,
          visitor: this.selectUser.value,
@@ -127,12 +128,12 @@ class Card{
 
        this.M = this.myDate.getMonth()
        this.D = this.myDate.getDay() 
-
+       
        this.cardsData.push(this.newCard)
        localStorage.setItem('cardsData' , JSON.stringify(this.cardsData))
         this.modal.style.display = 'none'
         
-
+        this.books = JSON.parse(localStorage.getItem('booksData'))
         this.books.forEach(elem => {
           if(elem.name == this.selectBook.value){
             elem.number_of_instance_in_library --
@@ -166,6 +167,30 @@ class Card{
       
       this.cardsData = JSON.parse(localStorage.getItem('cardsData'))
         this.delId = parseInt (e.target.parentElement.children[0].innerHTML)
+        this.statisticArr = JSON.parse(localStorage.getItem('statData'))
+        if(this.statisticArr == null){
+          this.statisticArr = []
+        }
+       
+        this.cardsData.forEach(elem => {
+          if(elem.id == this.delId){  
+
+            if(this.M < 10 ){
+              this.M =   '0' + this.M 
+            }  
+    
+            if(this.D < 10 ){
+              this.D =   '0' + this.D 
+            }
+        
+            elem.returned_data =  this.Y +  ' '  + this.M +  ' '  + this.D
+            this.statisticArr.push(elem)  
+
+            this.M = this.myDate.getMonth()
+            this.D = this.myDate.getDay() 
+          }
+        })  
+        localStorage.setItem('statData' ,  JSON.stringify(this.statisticArr))
         this.cardsData2 = this.cardsData.filter( (elem) => elem.id !== this.delId)
          this.cardsData2.forEach(elem => {
            if(elem.id > this.delId){
@@ -190,6 +215,7 @@ class Card{
     this.modal.querySelector('span').addEventListener('click' , this.closeModal.bind(this))
     this.buttonSave.addEventListener('click' , this.setCardsInLocStor.bind(this) )
     this.table.addEventListener('click' , this.returnBook.bind(this))
+    console.dir(window.innerWidth)
   }
 
 }
