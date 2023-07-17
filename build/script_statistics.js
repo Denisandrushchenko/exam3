@@ -8,8 +8,33 @@ class Statistic{
       this.Y = this.myDate.getFullYear()
       this.M = this.myDate.getMonth()
       this.D = this.myDate.getDay() 
+
+      this.menu = document.querySelector('.menu')
+      this.tabletMenu = document.querySelector('.menu-tablet')
+      this.tabletMenuUl = document.querySelector('.menu-tablet-ul')
     }  
 
+
+    setMenu(){
+         
+      if(window.innerWidth > 880 ){
+          this.tabletMenu.style.display = 'none'
+          this.menu.style.display = 'flex'
+        
+      }   
+
+  
+
+      if(window.innerWidth < 880){
+        this.tabletMenu.style.display = 'block'
+        this.menu.style.display = 'none'
+      }
+
+      
+   
+}
+
+     
 
     setTable(){
         this.table.innerHTML = ''
@@ -54,7 +79,16 @@ class Statistic{
    })  
     }
 
-    init(){ 
+    toggleClass(){
+      console.dir(this.tabletMenu)
+       this.tabletMenuUl.classList.toggle('active-ul')
+    }
+ 
+   
+
+    init(){  
+      this.setMenu()
+      document.querySelector('.menu-tablet-h2').addEventListener('click' , this.toggleClass.bind(this))
         this.setTable ()
         console.dir(this)
     }

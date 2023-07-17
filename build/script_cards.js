@@ -17,12 +17,15 @@ class Card{
       this.myDate = new Date
       this.Y = this.myDate.getFullYear()
       this.M = this.myDate.getMonth()
-      this.D = this.myDate.getDay() 
+      this.D = this.myDate.getDate() 
       this.delId = null
       this.statisticArr = []
+      this.menu = document.querySelector('.menu')
+      this.tabletMenu = document.querySelector('.menu-tablet')
+      this.tabletMenuUl = document.querySelector('.menu-tablet-ul')
       
       
-  } 
+  }  
     
    goToLocalStorage(){
        
@@ -34,7 +37,25 @@ class Card{
           } 
    
    }
-    
+      
+    setMenu(){
+         
+      if(window.innerWidth > 880 ){
+          this.tabletMenu.style.display = 'none'
+          this.menu.style.display = 'flex'
+        
+      }   
+
+  
+
+      if(window.innerWidth < 880){
+        this.tabletMenu.style.display = 'block'
+        this.menu.style.display = 'none'
+      }
+
+      
+   
+}
 
    
 
@@ -111,7 +132,8 @@ class Card{
         }  
 
         if(this.D < 10 ){
-          this.D =   '0' + this.D 
+          this.D =   '0' + this.D  
+          
         }
 
 
@@ -127,7 +149,7 @@ class Card{
        } 
 
        this.M = this.myDate.getMonth()
-       this.D = this.myDate.getDay() 
+       this.D = this.myDate.getDate() 
        
        this.cardsData.push(this.newCard)
        localStorage.setItem('cardsData' , JSON.stringify(this.cardsData))
@@ -182,12 +204,12 @@ class Card{
             if(this.D < 10 ){
               this.D =   '0' + this.D 
             }
-        
+           
             elem.returned_data =  this.Y +  ' '  + this.M +  ' '  + this.D
             this.statisticArr.push(elem)  
 
             this.M = this.myDate.getMonth()
-            this.D = this.myDate.getDay() 
+            this.D = this.myDate.getDate() 
           }
         })  
         localStorage.setItem('statData' ,  JSON.stringify(this.statisticArr))
@@ -205,19 +227,26 @@ class Card{
       this.setTable()
     }
 
+    toggleClass(){
+      console.dir(this.tabletMenu)
+       this.tabletMenuUl.classList.toggle('active-ul')
+    }
+ 
+
   
 
   init(){
-  
+    this.setMenu()
     this.goToLocalStorage()
     this.setTable()
     this.buttonAddCard.addEventListener('click' , this.addCard.bind(this))
     this.modal.querySelector('span').addEventListener('click' , this.closeModal.bind(this))
     this.buttonSave.addEventListener('click' , this.setCardsInLocStor.bind(this) )
     this.table.addEventListener('click' , this.returnBook.bind(this))
-    console.dir(window.innerWidth)
+    document.querySelector('.menu-tablet-h2').addEventListener('click' , this.toggleClass.bind(this))
   }
 
 }
 
 new Card().init()
+

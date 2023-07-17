@@ -1,7 +1,8 @@
 'use strict'
 
 class Books{
-    constructor(){
+    constructor(){ 
+      this.wrapper = document.querySelector('.wrapper')
       this.table = document.querySelector('table')
       this.buttonAddBook = document.querySelector('.submenu button')
       this.booksData = null
@@ -16,8 +17,30 @@ class Books{
       this.newArr3 = []
       this.inputSearchBook = document.querySelector('.search-input')
       this.buttonSort = document.querySelector('.sort_books button')
-      this.temp = null
-  }  
+      this.temp = null  
+      this.menu = document.querySelector('.menu')
+      this.tabletMenu = document.querySelector('.menu-tablet')
+      this.tabletMenuUl = document.querySelector('.menu-tablet-ul')
+  }    
+
+    setMenu(){
+         
+          if(window.innerWidth > 880 ){
+              this.tabletMenu.style.display = 'none'
+              this.menu.style.display = 'flex'
+            
+          }   
+
+      
+
+          if(window.innerWidth < 880){
+            this.tabletMenu.style.display = 'block'
+            this.menu.style.display = 'none'
+          }
+
+          
+       
+    }
 
 
   
@@ -66,7 +89,7 @@ class Books{
             <td> ${element.number_of_page} </td>
             <td> ${element.number_of_instance_in_library} </td>
             
-            <td class = "delete-book"> <img  src = "icons/del.png" >  </td>
+            <td class = "delete-book"> Delete book  </td>
             
             <tr>
           `
@@ -208,12 +231,15 @@ class Books{
     this.setTable()
    }
 
-    
+   toggleClass(){
+     console.dir(this.tabletMenu)
+      this.tabletMenuUl.classList.toggle('active-ul')
+   }
 
   
 
   init(){
-     
+    this.setMenu()
     this.goToLocalStorage()
     this.setTable()
     this.modal.addEventListener('input' , this.checkData.bind(this))
@@ -224,6 +250,7 @@ class Books{
     this.buttonSort.addEventListener('click' , this.sortBooks.bind(this))
     document.querySelector('.search-button-searching').addEventListener('click' , this.searchBook.bind(this))
     document.querySelector('.search-button-cancel').addEventListener('click' , this.cancelSearchingBook.bind(this))
+    document.querySelector('.menu-tablet-h2').addEventListener('click' , this.toggleClass.bind(this))
     console.dir(this.buttonSort)
     
   }

@@ -46,6 +46,36 @@ h1{
 
 .menu > div:hover{
     cursor: pointer;
+}  
+ 
+.menu-tablet{
+    margin-left: 5%;
+   font-size: 1.5em;
+   font-weight: 900;
+   text-transform: uppercase;
+   color: gray;
+  
+}     
+
+.active-ul{
+    display: none;
+}
+ 
+.menu-tablet h1{
+    margin: 0;
+}
+
+
+
+
+.menu-tablet-ul>li{
+    
+    width: 40%;
+}
+
+.menu-tablet-ul a{
+    text-decoration: none;
+    color: gray;
 }
 
 .search{
@@ -65,7 +95,21 @@ h1{
     display: flex;
     justify-content: space-between;
     margin: 30px;
-}  
+}   
+.sort_books {
+    display: flex;
+   
+} 
+.sort_books > button{
+    padding: 0 20px;
+    margin-left: 5px;
+} 
+
+.sort_books > select{
+    
+    margin-left: 5px;
+   margin-top: 3px;
+}
 .search_books{
     border: none;
 }  
@@ -182,4 +226,8 @@ select{
     margin-bottom: 10px;
 } 
 
-
+@media all and (max-width: 880px) {
+     .wrapper{
+         width: 100%;
+     }
+}

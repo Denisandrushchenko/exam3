@@ -15,6 +15,10 @@ class Visitors{
       this.newArr = []
       this.newArr2 = []
       this.inputSearchUser = document.querySelector('.search-input')
+      this.menu = document.querySelector('.menu')
+      this.tabletMenu = document.querySelector('.menu-tablet')
+      this.tabletMenuUl = document.querySelector('.menu-tablet-ul')
+      
   } 
     
    goToLocalStorage(){
@@ -26,7 +30,31 @@ class Visitors{
                    .then( response => localStorage.setItem('usersData' , JSON.stringify(response)))
           } 
    
-   }
+   }    
+
+   
+ 
+
+
+   
+   setMenu(){
+         
+    if(window.innerWidth > 880 ){
+        this.tabletMenu.style.display = 'none'
+        this.menu.style.display = 'flex'
+      
+    }   
+
+
+
+    if(window.innerWidth < 880){
+      this.tabletMenu.style.display = 'block'
+      this.menu.style.display = 'none'
+    }
+
+    
+ 
+}
     
 
     setUsersFromLocalStorage(){
@@ -54,7 +82,7 @@ class Visitors{
             <td> ${element.id} </td>
             <td> ${element.name} </td>
             <td> ${element.Phone} </td>
-            <td class = "delete-book" >  <img  src = "icons/del.png" >  </td>
+            <td class = "delete-book" >  Delete  </td>
             <tr>
           `
           this.table.insertAdjacentHTML('beforeend' , str2)
@@ -172,7 +200,12 @@ cancelSearchingUser(){
     
     this.setTable()
   
-}        
+}         
+
+toggleClass(){
+  console.dir(this.tabletMenu)
+   this.tabletMenuUl.classList.toggle('active-ul')
+}
 
 
   
@@ -182,6 +215,7 @@ cancelSearchingUser(){
     
     this.goToLocalStorage()
     this.setTable()
+    this.setMenu()
     this.buttonAddUser.addEventListener('click' , this.buttonNewUser.bind(this))
     this.modal.addEventListener('input' , this.checkData.bind(this))
     this.modal.addEventListener('click' , this.modalClose.bind(this))
@@ -189,7 +223,8 @@ cancelSearchingUser(){
     this.table.addEventListener('click' , this.delVisitor.bind(this))
     document.querySelector('.search-button-searching').addEventListener('click' , this.searchUser.bind(this))
     document.querySelector('.search-button-cancel').addEventListener('click' , this.cancelSearchingUser.bind(this))
-    console.dir(this.buttonAddUser)
+    document.querySelector('.menu-tablet-h2').addEventListener('click' , this.toggleClass.bind(this))
+    
     
   }
 
